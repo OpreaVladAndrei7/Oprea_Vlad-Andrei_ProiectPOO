@@ -9,7 +9,7 @@ private:
 	int nrTurbine;
 	string* numeTurbine;
 public:
-	
+
 
 	Avion() : nrAvioane(nrInitialAvioane++) {
 		model = "Boeing 49";
@@ -26,7 +26,7 @@ public:
 		numeTurbine[0] = "Gen Electric C12M56";
 		numeTurbine[1] = "Trent AIR XWB";
 	}
-	Avion(string model, int nrTurbine, string *numeTurbine) : nrAvioane(nrInitialAvioane++) {
+	Avion(string model, int nrTurbine, string* numeTurbine) : nrAvioane(nrInitialAvioane++) {
 		this->model = model;
 		this->nrTurbine = nrTurbine;
 		this->numeTurbine = new string[nrTurbine];
@@ -43,20 +43,21 @@ public:
 			this->numeTurbine[i] = a.numeTurbine[i];
 		}
 	};
-	~Avion(){
+	~Avion() {
 		if (nrTurbine > 0) {
 			delete[]this->numeTurbine;
-			}
+		}
 	}
 
 	void afisareAvion() {
-		cout<<"Avionul: "<<nrAvioane<<" "<< model << " are un numar de " << nrTurbine << " turbine cu denumirile: ";
+		cout << "Avionul: " << nrAvioane << " " << model << " are un numar de " << nrTurbine << " turbine cu denumirile: ";
 		for (int i = 0; i < nrTurbine; i++)
-		{cout << numeTurbine[i] << " "; 
+		{
+			cout << numeTurbine[i] << " ";
 		}
 		cout << endl;
 	}
-	
+
 	static int getInitializareNrAvioane() {
 		return nrInitialAvioane;
 	};
@@ -78,8 +79,8 @@ public:
 	string* getNumeTurbine() {
 		return numeTurbine;
 	}
-	void setNumeTurbine( string *numeTurbine,int nrTurbine){
-		if (this->nrTurbine >0) {
+	void setNumeTurbine(string* numeTurbine, int nrTurbine) {
+		if (this->nrTurbine > 0) {
 			delete[]this->numeTurbine;
 			this->numeTurbine = new string[nrTurbine];
 			for (int i = 0; i < nrTurbine; i++) {
@@ -87,7 +88,7 @@ public:
 			}
 		}
 	}
-	Avion operator=(const Avion& av){
+	Avion operator=(const Avion& av) {
 		this->model = av.model;
 		this->nrInitialAvioane = av.nrInitialAvioane;
 		if (this->nrTurbine > 0) {
@@ -98,7 +99,7 @@ public:
 		for (int i = 0; i < nrTurbine; i++) {
 			this->numeTurbine[i] = av.numeTurbine[i];
 		}
-		return* this;
+		return*this;
 	}
 	Avion operator+(const Avion& av) {
 		Avion aux;
@@ -107,8 +108,8 @@ public:
 		for (int i = 0; i < this->nrTurbine; i++) {
 			aux.numeTurbine[i] = this->numeTurbine[i];
 		}
-		for (int i = this->nrTurbine; i < aux.nrTurbine; i++) {
-			aux.numeTurbine[i] = av.numeTurbine[i- this->nrTurbine];
+		for (int i = this->nrTurbine; i < aux.nrTurbine ; i++) {
+			aux.numeTurbine[i] = av.numeTurbine[i - this->nrTurbine];
 		}
 		return aux;
 	}
@@ -116,16 +117,30 @@ public:
 		return (this->nrTurbine > av.nrTurbine);
 	}
 	friend ostream& operator<<(ostream& avion, const Avion& a) {
-		avion << a.model<<" ";
-		avion << a.nrAvioane<<" ";
-		avion << a.nrInitialAvioane<<" ";
-		avion << a.nrTurbine<<" ";
+		avion << a.model << " ";
+		avion << a.nrAvioane << " ";
+		avion << a.nrInitialAvioane << " ";
+		avion << a.nrTurbine << " ";
 		for (int i = 0; i < a.nrTurbine; i++) {
-			avion << a.numeTurbine[i]<<" ";
+			avion << a.numeTurbine[i] << " ";
 		}
 		return avion;
 	}
-	friend float medieTurbinePeAvion(const Avion &avi);
+	friend istream& operator>>(istream& av, Avion& a) {
+		cout << "Model:" << endl;
+		av >> a.model;
+		if (a.nrTurbine != NULL) delete[]a.numeTurbine;
+		cout << "Numar Turbine:" << endl;
+		av >> a.nrTurbine;
+		a.numeTurbine = new string[a.nrTurbine];
+		for (int i = 0; i < a.nrTurbine; i++) {
+			cout << "Numele turbinei" << i + 1 << endl;
+			av >> a.numeTurbine[i];
+		}
+		return av;
+
+	}
+	friend float medieTurbinePeAvion(const Avion& avi);
 	friend string getSirNumeTurbine(const Avion& avi);
 };
 
@@ -136,8 +151,8 @@ float medieTurbinePeAvion(const Avion& avi) {
 string getSirNumeTurbine(const Avion& avi) {
 	string aux = "";
 	for (int i = 0; i < avi.nrTurbine; i++) {
-		aux = aux +" "+avi.numeTurbine[i];
-		
+		aux = aux + " " + avi.numeTurbine[i];
+
 	}
 	return aux;
 }
@@ -153,7 +168,7 @@ private:
 	float* pretProdus;
 
 public:
-	
+
 
 	Aeroport() : numarAeroporturi(numarInitial++) {
 		numeAeroport = "Henri Coanda";
@@ -178,7 +193,7 @@ public:
 			this->pretProdus[i] = pretProdus[i];
 		}
 	}
-	Aeroport(const Aeroport& ae): numarAeroporturi(numarInitial++) {
+	Aeroport(const Aeroport& ae) : numarAeroporturi(numarInitial++) {
 		this->numeAeroport = ae.numeAeroport;
 		this->nrProduse = ae.nrProduse;
 		this->pretProdus = new float[nrProduse];
@@ -192,7 +207,7 @@ public:
 		}
 	}
 	void afisareAeroport() {
-		cout << "Aeroportul: "<<numarAeroporturi <<" "<< numeAeroport << " are in cadrul acestuia un numar de: " << nrProduse << " produse fiecare cu pretul de: ";
+		cout << "Aeroportul: " << numarAeroporturi << " " << numeAeroport << " are in cadrul acestuia un numar de: " << nrProduse << " produse fiecare cu pretul de: ";
 		for (int i = 0; i < nrProduse; i++) {
 			cout << pretProdus[i] << " ";
 		}
@@ -208,7 +223,7 @@ public:
 	void setNumeAeroport(string numeAeroport) {
 		this->numeAeroport = numeAeroport;
 	}
-	int getNrAeroport() const{
+	int getNrAeroport() const {
 		return numarAeroporturi;
 	}
 	int getNrProduse() {
@@ -247,11 +262,11 @@ public:
 		/*this->pretProdus[nrProduse - 1] = 0;*/
 		return *this;
 	}
-	
+
 	Aeroport operator+=(const Aeroport& a) {
 		int aux = this->nrProduse;
 		this->nrProduse += a.nrProduse;
-		float *vector = new float[this->nrProduse];
+		float* vector = new float[this->nrProduse];
 		for (int i = 0; i < aux; i++) {
 			vector[i] = this->pretProdus[i];
 		}
@@ -273,21 +288,28 @@ public:
 		cit >> aer.nrProduse;
 		aer.pretProdus = new float[aer.nrProduse];
 		for (int i = 0; i < aer.nrProduse; i++) {
-			cout <<"Produsul " << i + 1<<" are pretul de:";
+			cout << "Produsul " << i + 1 << " are pretul de:";
 			cit >> aer.pretProdus[i];
 		}
 		return cit;
+	}
+	friend ostream& operator<<(ostream& afi, const Aeroport& aer) {
+		afi << "Aeroportul: " << aer.numarAeroporturi << " " << aer.numeAeroport << " are in cadrul acestuia un numar de: " << aer.nrProduse << " produse fiecare cu pretul de: ";
+		for (int i = 0; i < aer.nrProduse; i++) {
+			afi << aer.pretProdus[i] << " ";
+		}
+		return afi;
 	}
 	friend float pretMediu(const Aeroport& aer);
 	friend void afisarePreturi(const Aeroport& aer);
 };
 
 float pretMediu(const Aeroport& aer) {
-	float total=0;
+	float total = 0;
 	for (int i = 0; i < aer.nrProduse; i++) {
 		total = total + aer.pretProdus[i];
 	}
-	return total/aer.nrProduse;
+	return total / aer.nrProduse;
 }
 
 void afisarePreturi(const Aeroport& aer) {
@@ -312,9 +334,9 @@ private:
 	string* modelAeronava;
 
 public:
-	
 
-	CompanieAeriana(): codCompanie("E3F108") {
+
+	CompanieAeriana() : codCompanie("E3F108") {
 		nume = "WizAir";
 		numarAeronave = 2;
 		valoareNetaM = 4.2;
@@ -343,7 +365,7 @@ public:
 			this->modelAeronava[i] = modelAeronava[i];
 		}
 	}
-	CompanieAeriana(const CompanieAeriana& c):codCompanie(c.codCompanie) {
+	CompanieAeriana(const CompanieAeriana& c) :codCompanie(c.codCompanie) {
 		this->nume = c.nume;
 		this->numarAeronave = c.numarAeronave;
 		this->valoareNetaM = c.valoareNetaM;
@@ -359,7 +381,7 @@ public:
 		}
 	}
 	void afisareCompanie() {
-		cout << "Compania " <<codCompanie<<" "<< nume << " are o valoare neta de " << valoareNetaM << "si un numare de: " << numarAeronave << " aeronave ";
+		cout << "Compania " << codCompanie << " " << nume << " are o valoare neta de " << valoareNetaM << "si un numare de: " << numarAeronave << " aeronave ";
 		for (int i = 0; i < numarAeronave; i++) {
 			cout << modelAeronava[i] << " ";
 		}
@@ -425,23 +447,38 @@ public:
 			return modelAeronava[i];
 		}
 	}
-	CompanieAeriana operator-(const CompanieAeriana & com) {
-			CompanieAeriana aux;
-			aux.valoareNetaM = this->valoareNetaM - com.valoareNetaM;
-			aux.numarAeronave = this->numarAeronave - com.numarAeronave;
-			return aux;
+	CompanieAeriana operator-(const CompanieAeriana& com) {
+		CompanieAeriana aux;
+		aux.valoareNetaM = this->valoareNetaM - com.valoareNetaM;
+		aux.numarAeronave = this->numarAeronave - com.numarAeronave;
+		return aux;
 	}
 	friend ostream& operator<<(ostream& companie, const CompanieAeriana& com) {
-		companie <<"Compania aeriana: " <<com.nume<<" ";
+		companie << "Compania aeriana: " << com.nume << " ";
 		companie << "cu valoarea neta de " << com.valoareNetaM << " milioane de euro ";
-		companie << "si codul companiei: "<<com.codCompanie;
-		companie << " prezinta un TVA de " << com.TVA<<"."<<endl;
+		companie << "si codul companiei: " << com.codCompanie;
+		companie << " prezinta un TVA de " << com.TVA << "." << endl;
 		companie << "Compania are:" << com.numarAeronave << " aeronave, modelele: ";
 		for (int i = 0; i < com.numarAeronave; i++) {
 			companie << com.modelAeronava[i] << " ";
 		}
 		cout << endl;
 		return companie;
+	}
+	friend istream& operator>>(istream& citire, CompanieAeriana& com) {
+		cout << "Numele companiei este:" << endl;
+		citire >> com.nume;
+		cout << "Are valoarea neta in milioane de:" << endl;
+		citire >> com.valoareNetaM;
+		if (com.numarAeronave != NULL) delete[]com.modelAeronava;
+		cout << "Are un numar de aeronave egal cu " << endl;
+		citire >> com.numarAeronave;
+		com.modelAeronava = new string[com.numarAeronave];
+		for (int i = 0; i < com.numarAeronave; i++) {
+			cout << "Modelul " << i + 1;
+			citire >> com.modelAeronava[i];
+		}
+		return citire;
 	}
 	friend float valoareAbsolutaM(const CompanieAeriana& com);
 	friend string sirModele(const CompanieAeriana& com);
@@ -461,33 +498,58 @@ string sirModele(const CompanieAeriana& com) {
 float CompanieAeriana::TVA = 9;
 
 void main() {
+	int numarAvioane = 0;
+	cout << "Numarul de avioane inregistrate in vector "<< endl;
+	cin >> numarAvioane;
+	Avion* vector = new Avion[numarAvioane];
+	for (int i = 0; i < numarAvioane; i++) {
+		cin >> vector[i];
+	}
+	for (int i = 0; i < numarAvioane; i++) {
+		cout << vector[i]<<endl;
+	}
+	const int nrLinii = 2;
+	const int nrColoane = 2;
+    Avion avioane[nrLinii][nrColoane];
+	for (int i = 0; i < nrLinii; i++) {
+		for (int j = 0; j < nrColoane; j++) {
+			cout << "Avionul de pe pozitia " << i + 1 << " " << j + 1 << endl;
+			cin >> avioane[i][j];
+		}
+	}
+	for (int i = 0; i < nrLinii; i++) {
+		for (int j = 0; j < nrColoane; j++) {
+			cout << avioane[i][j]<<" ";
+		}
+		cout << endl;
+	}
 
 	Avion avion1;
 	avion1.afisareAvion();
 
 	Avion avion2("Boeing23");
 	avion2.afisareAvion();
-	
+
 	string* numeTurbine = new string[3];
 	numeTurbine[0] = "General Electric CFM56";
 	numeTurbine[1] = "Rolls-Royce Trent XWB";
 	numeTurbine[2] = "Pratt & Whitney JT8D";
-	
+
 	Avion avion3("Electro 23 air", 3, numeTurbine);
 	avion3.afisareAvion();
 
 	cout << endl;
 
-	cout<<avion1.getInitializareNrAvioane()<<endl;
+	cout << avion1.getInitializareNrAvioane() << endl;
 	avion1.setModel("Mecredes Air");
-	cout<<avion1.getModel()<<endl;
+	cout << avion1.getModel() << endl;
 	avion1.setNrTurbine(2);
-	cout<<avion1.getNrTurbine()<<endl;
+	cout << avion1.getNrTurbine() << endl;
 	avion1.setNumeTurbine(numeTurbine, 3);
 	for (int i = 0; i < 3; i++) {
 		cout << avion1.getNumeTurbine()[i] << endl;
 	}
-	cout << medieTurbinePeAvion(avion3)<<endl;
+	cout << medieTurbinePeAvion(avion3) << endl;
 	cout << getSirNumeTurbine(avion1) << endl;
 
 	cout << endl;
@@ -495,38 +557,49 @@ void main() {
 	avion1.afisareAvion();
 	Avion avion5 = avion1 + avion2;
 	avion5.afisareAvion();
-	cout <<(avion5 > avion1)<<endl;
-	cout << avion1<<endl;
-	
+	cout << (avion5 > avion1) << endl;
+	cout << avion1 << endl;
+
 	cout << endl;
 	cout << endl;
+
+	int numarAeroporturi=0;
+	cout << "Numarul de aeroporturi in vector:"<<endl;
+	cin >> numarAeroporturi;
+	Aeroport* vectorAer = new Aeroport[numarAeroporturi];
+	for (int i = 0; i < numarAeroporturi; i++) {
+		cin >> vectorAer[i];
+	}
+	for (int i = 0; i < numarAeroporturi; i++) {
+		cout << vectorAer[i] << endl;
+	}
 
 	Aeroport aeroport1;
 	aeroport1.afisareAeroport();
 
 	Aeroport aeroport2("Henri Coanda");
 	aeroport2.afisareAeroport();
-	
+
 	float* pretProdus = new float[3];
 	pretProdus[0] = 5.3;
 	pretProdus[1] = 2.23;
 	pretProdus[2] = 5.99;
-	
+
 	Aeroport aeroport3("King Fahd", 3, pretProdus);
 	aeroport3.afisareAeroport();
 
 	cout << endl;
 
-	cout << aeroport1.getInitializareNumarInitial()<<endl;
+	cout << aeroport1.getInitializareNumarInitial() << endl;
 	aeroport1.setNumeAeroport("Cluj Airport");
-	cout<<aeroport1.getNumeAeroport()<< endl;
+	cout << aeroport1.getNumeAeroport() << endl;
 	aeroport1.setNrProduse(3);
 	cout << aeroport1.getNrProduse() << endl;
 	aeroport1.setPretProduse(pretProdus, 3);
 	for (int i = 0; i < 3; i++) {
 		cout << aeroport1.getPretProduse()[i] << endl;
 	}
-	cout<<pretMediu(aeroport1)<<endl;
+	cout << pretMediu(aeroport1) << endl;
 	afisarePreturi(aeroport1);
 
 	cout << endl;
@@ -546,16 +619,27 @@ void main() {
 	cout << endl;
 	cout << endl;
 
+	int numarCompanii = 0;
+	cout << "Numarul de companii din vector este:" << endl;
+	cin >> numarCompanii;
+	CompanieAeriana* vectorCom = new CompanieAeriana[numarCompanii];
+	for (int i = 0; i < numarCompanii; i++) {
+		cin >> vectorCom[i];
+	}
+	for (int i = 0; i < numarCompanii; i++) {
+		cout << vectorCom[i];
+	}
+
 	CompanieAeriana companie1;
 	companie1.afisareCompanie();
 
 	CompanieAeriana companie2(130);
 	companie2.afisareCompanie();
-	
+
 	string* modelAeronava = new string[2];
 	modelAeronava[0] = "Traveler Air 23";
 	modelAeronava[1] = "Boeing 45";
-	
+
 	CompanieAeriana companie3("Turkish Airlines", 2, 980, true, modelAeronava);
 	companie3.afisareCompanie();
 
@@ -563,20 +647,20 @@ void main() {
 
 	cout << companie1.getInitializareTVA() << endl;
 	companie1.setNume("Qatar AIRWAYS");
-	cout<<companie1.getNume() << endl;
+	cout << companie1.getNume() << endl;
 	companie1.setNumarAeronave(6);
 	cout << companie1.getNumarAeronave() << endl;
 	companie1.setValoareNetaM(100.5);
-	cout << companie1.getValoareNetaM()<<endl;
+	cout << companie1.getValoareNetaM() << endl;
 	companie1.setModelAeronava(modelAeronava, 2);
 	for (int i = 0; i < 2; i++) {
 		cout << companie1.getModelAeronava()[i] << endl;
 	}
-	cout << valoareAbsolutaM(companie1)<<endl;
+	cout << valoareAbsolutaM(companie1) << endl;
 	cout << sirModele(companie2) << endl;
 
 	cout << endl;
-	cout<<companie3[1]<<endl;
+	cout << companie3[1] << endl;
 	CompanieAeriana companie4;
 	companie4 = companie3;
 	companie4.afisareCompanie();
