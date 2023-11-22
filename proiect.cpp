@@ -108,7 +108,7 @@ public:
 		for (int i = 0; i < this->nrTurbine; i++) {
 			aux.numeTurbine[i] = this->numeTurbine[i];
 		}
-		for (int i = this->nrTurbine; i < aux.nrTurbine ; i++) {
+		for (int i = this->nrTurbine; i < aux.nrTurbine; i++) {
 			aux.numeTurbine[i] = av.numeTurbine[i - this->nrTurbine];
 		}
 		return aux;
@@ -483,6 +483,107 @@ public:
 	friend float valoareAbsolutaM(const CompanieAeriana& com);
 	friend string sirModele(const CompanieAeriana& com);
 };
+
+class Aerodrom {
+private:
+	string denumire;
+	float suprafata;
+	Avion avion;
+	/*Avion* avion;
+	int nrAvioane;*/
+public:
+	Aerodrom() {
+		this->suprafata = 1000;
+		this->denumire= "AERO DROM";
+		string* turbine = new string[3]{ "Boost34","Turbo22","XLR8" };
+		Avion avion1("Boeing566",3,turbine);
+		this->avion = avion1;
+		/*this->nrAvioane = 2;
+		Avion  avion1("WLR87");
+		Avion avion2;
+		this->avion = new Avion[nrAvioane];
+		this->avion[0] = avion1;
+		this->avion[1] = avion2;*/
+	}
+	Aerodrom(const Aerodrom& aer) {
+		this->denumire = aer.denumire;
+		this->suprafata = aer.suprafata;
+		this->avion = aer.avion;
+	}
+	~Aerodrom() {
+
+	}
+	Aerodrom operator+(const Aerodrom& aer) {
+		this->suprafata += aer.suprafata;
+		return *this;
+	}
+
+	friend istream& operator>>(istream& citire, Aerodrom& aer) {
+		cout << "Denumirea aerodromului ";
+		citire >> aer.denumire;
+		cout << "Suprafata: ";
+		citire >> aer.suprafata;
+		cout<< "Datele Avionului: ";
+		citire >> aer.avion;
+		return citire;
+	}
+
+	friend ostream& operator<<(ostream& afisare, const Aerodrom& aer) {
+		afisare << " Aerodromul " << aer.denumire;
+		afisare << " are o suprafata de: " << aer.suprafata;
+		afisare << " m2 si are in componenta sa avionul "<<aer.avion;
+		/*for (int i = 0; i < aer.nrAvioane; i++) {
+			afisare << aer.avion[0]<< " --- ";
+		}*/
+		return afisare;
+	}
+	string getDenumire() {
+		return this->denumire;
+	}
+	void setDenumire(string denumire) {
+		this->denumire = denumire;
+	}
+	float getSuprafata() {
+		return this->suprafata;
+	}
+	void setSuprafata(float suprafata) {
+		this->suprafata = suprafata;
+	}
+	Avion getAvion() {
+		return this->avion;
+	}
+	void setAvion(Avion avion) {
+		this->avion = avion;
+	}
+	/*int getNrAvioane() {
+		return this->nrAvioane;
+	}
+	void setNrAvioane(int nrAvioane) {
+		Avion avion7;
+		int aux = this->nrAvioane;
+		this->nrAvioane = nrAvioane;
+		if (this->nrAvioane != aux) {
+			Avion* auxav = this->avion;
+			delete[]this->avion;
+			if (aux < this->nrAvioane);
+			this->avion = new Avion[this->nrAvioane];
+			for (int i = 0; i < aux; i++) {
+				this->avion[i] = auxav[i];
+			}
+			for (int i = aux; i < this->nrAvioane; i++) {
+				this->avion[i] = avion7;
+			}
+			if (aux > this->nrAvioane) {
+				this->avion = new Avion[this->nrAvioane];
+				for (int i = 0; i < this->nrAvioane; i++) {
+					this->avion[i] = auxav[i];
+				}
+			}
+		}
+	}*/
+
+	
+};
 float valoareAbsolutaM(const CompanieAeriana& com) {
 	return (com.TVA * com.valoareNetaM / 100) + com.valoareNetaM;
 }
@@ -499,18 +600,18 @@ float CompanieAeriana::TVA = 9;
 
 void main() {
 	int numarAvioane = 0;
-	cout << "Numarul de avioane inregistrate in vector "<< endl;
+	cout << "Numarul de avioane inregistrate in vector " << endl;
 	cin >> numarAvioane;
 	Avion* vector = new Avion[numarAvioane];
 	for (int i = 0; i < numarAvioane; i++) {
 		cin >> vector[i];
 	}
 	for (int i = 0; i < numarAvioane; i++) {
-		cout << vector[i]<<endl;
+		cout << vector[i] << endl;
 	}
 	const int nrLinii = 2;
 	const int nrColoane = 2;
-    Avion avioane[nrLinii][nrColoane];
+	Avion avioane[nrLinii][nrColoane];
 	for (int i = 0; i < nrLinii; i++) {
 		for (int j = 0; j < nrColoane; j++) {
 			cout << "Avionul de pe pozitia " << i + 1 << " " << j + 1 << endl;
@@ -519,7 +620,7 @@ void main() {
 	}
 	for (int i = 0; i < nrLinii; i++) {
 		for (int j = 0; j < nrColoane; j++) {
-			cout << avioane[i][j]<<" ";
+			cout << avioane[i][j] << " ";
 		}
 		cout << endl;
 	}
@@ -563,8 +664,8 @@ void main() {
 	cout << endl;
 	cout << endl;
 
-	int numarAeroporturi=0;
-	cout << "Numarul de aeroporturi in vector:"<<endl;
+	int numarAeroporturi = 0;
+	cout << "Numarul de aeroporturi in vector:" << endl;
 	cin >> numarAeroporturi;
 	Aeroport* vectorAer = new Aeroport[numarAeroporturi];
 	for (int i = 0; i < numarAeroporturi; i++) {
@@ -668,4 +769,21 @@ void main() {
 	companie4.afisareCompanie();
 	cout << companie3;
 
+cout << endl;
+cout << endl;
+
+Aerodrom aerodrom1;
+Aerodrom aerodrom2;
+Avion avion10;
+cin >> aerodrom1;
+cout << aerodrom1<<endl;
+aerodrom1.setDenumire("Buckingham");
+cout << aerodrom1.getDenumire() << endl;
+aerodrom1.setSuprafata(1250);
+cout << aerodrom1.getSuprafata()<<endl;
+aerodrom1.setAvion(avion10);
+cout << aerodrom1.getAvion()<<endl;
+cout << (aerodrom1 + aerodrom2);
+//aerodrom1.setNrAvioane(4);
+//cout << aerodrom1;
 }
