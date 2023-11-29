@@ -1,4 +1,5 @@
 #include < iostream>
+#include <fstream>
 using namespace std;
 //domeniul avioanelor cu obiectele: Avion; Aeroport; CompanieAeriana
 class Avion {
@@ -88,6 +89,25 @@ public:
 			}
 		}
 	}
+	
+	void afisareFisBinNrTurbine() {
+		fstream f("avi.dat", ios::binary | ios::out);
+		f.write((char*)&this->nrTurbine, sizeof(int));
+		f.close();
+	}
+
+	void citireFisBinNrTurbine() {
+		fstream g("avi.dat", ios::binary | ios::in);
+		g.read((char*)&this->nrTurbine, sizeof(int));
+		cout << this->nrTurbine << endl;
+		g.close();
+	}
+
+	void afiareFisBinNumeTurbine() {
+		fstream f("avi.dat", ios::binary | ios::in);
+		f.write((char*)this->numeTurbine, sizeof(this->nrTurbine));
+		f.close();
+	}
 	Avion operator=(const Avion& av) {
 		this->model = av.model;
 		this->nrInitialAvioane = av.nrInitialAvioane;
@@ -139,6 +159,27 @@ public:
 		}
 		return av;
 
+	}
+	friend ofstream& operator<<(ofstream& ofs, const Avion& a) {
+		ofs << a.model << endl;
+		ofs<< a.nrTurbine << endl;
+		for (int i = 0; i < a.nrTurbine; i++) {
+			ofs << a.numeTurbine[i] << " ";
+		}
+		ofs << endl;
+		ofs << a.nrAvioane << endl;
+		ofs << a.nrInitialAvioane << endl;
+		return ofs;
+	}
+	friend ifstream& operator>>(ifstream& ifs, Avion& a) {
+		ifs >> a.model;
+		if (a.nrTurbine != NULL) delete[]a.numeTurbine;
+		ifs >> a.nrTurbine;
+		a.numeTurbine = new string[a.nrTurbine];
+		for (int i = 0; i < a.nrTurbine; i++) {
+			ifs >> a.numeTurbine[i];
+		}
+		return ifs;
 	}
 	friend float medieTurbinePeAvion(const Avion& avi);
 	friend string getSirNumeTurbine(const Avion& avi);
@@ -298,6 +339,28 @@ public:
 		for (int i = 0; i < aer.nrProduse; i++) {
 			afi << aer.pretProdus[i] << " ";
 		}
+		return afi;
+	}
+	friend ifstream& operator>>(ifstream& cit, Aeroport& aer) {
+		cit >> aer.numeAeroport;
+		cit >> aer.numarInitial;
+		/*cit >> aer.getNrAeroport();*/
+		cit >> aer.nrProduse;
+		aer.pretProdus = new float[aer.nrProduse];
+		for (int i = 0; i < aer.nrProduse; i++) {
+			cit >> aer.pretProdus[i];
+		}
+		return cit;
+	}
+	friend ofstream& operator<<(ofstream& afi, const Aeroport& aer) {
+		afi << aer.numeAeroport << endl;
+		afi << aer.numarInitial << endl;
+		afi << aer.nrProduse << endl;
+		for (int i = 0; i < aer.nrProduse; i++) {
+			afi << aer.pretProdus[i] << " ";
+		}
+		afi << endl;
+		afi << aer.numarAeroporturi<< endl;
 		return afi;
 	}
 	friend float pretMediu(const Aeroport& aer);
@@ -599,7 +662,7 @@ string sirModele(const CompanieAeriana& com) {
 float CompanieAeriana::TVA = 9;
 
 void main() {
-	int numarAvioane = 0;
+	/*int numarAvioane = 0;
 	cout << "Numarul de avioane inregistrate in vector " << endl;
 	cin >> numarAvioane;
 	Avion* vector = new Avion[numarAvioane];
@@ -783,7 +846,45 @@ aerodrom1.setSuprafata(1250);
 cout << aerodrom1.getSuprafata()<<endl;
 aerodrom1.setAvion(avion10);
 cout << aerodrom1.getAvion()<<endl;
-cout << (aerodrom1 + aerodrom2);
+cout << (aerodrom1 + aerodrom2);*/
 //aerodrom1.setNrAvioane(4);
 //cout << aerodrom1;
+
+cout << endl;
+cout << endl;
+
+Avion avion17("Boeing_727");
+Avion avion18;
+ofstream afi("avioane.txt", ios::out);
+afi << avion17;
+afi.close();
+ifstream cit("avioane.txt", ios::in);
+cit >> avion18;
+cit.close();
+cout << avion18<<endl;
+avion18.afisareFisBinNrTurbine();
+Avion avion19;
+cout<<avion19.getNrTurbine()<<endl;
+avion19.citireFisBinNrTurbine();
+avion18.afiareFisBinNumeTurbine();
+//Avion avion19("Aircraft_777");
+//Avion avion20("AIRTIME");
+////fstream f("avi.dat", ios::binary | ios::out);
+////f.write((char*)&avion19, sizeof(Avion));
+////f.close();
+//fstream g("avi.dat", ios::binary | ios::in);
+//g.read((char*)&avion20, sizeof(Avion));
+//g.close();
+//cout << avion20;
+
+Aeroport aeroport7("Bergamo");
+Aeroport aeroport8("Feyenord");
+ofstream af("aeroport.txt", ios::out);
+af << aeroport7;
+af.close();
+ifstream ci("aeroport.txt", ios::in);
+ci >> aeroport8;
+ci.close();
+cout << aeroport8;
+
 }
