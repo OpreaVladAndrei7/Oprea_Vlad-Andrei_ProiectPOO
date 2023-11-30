@@ -103,8 +103,6 @@ public:
 		fstream g("avi.dat", ios::binary | ios::in);
 		int lungimeString = 0;
 		g.read((char*)&lungimeString, sizeof(int));
-
-		// Allocate memory for the model string and read it
 		char* buffer = new char[lungimeString];
 		g.read(buffer, lungimeString);
 		this->model=buffer;
