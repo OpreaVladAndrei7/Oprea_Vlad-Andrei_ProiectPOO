@@ -91,23 +91,31 @@ public:
 	}
 	int lungimeString = 0;
 	void afisareFisBin() {
-		lungimeString = this->model.size();
 		fstream f("avi.dat", ios::binary | ios::out);
-		/*f.write((char*)&lungimeString, sizeof(int));
-		f.write((char*)&this->model, lungimeString);*/
-		f.write((char*)&this->nrTurbine, sizeof(int));
-		f.close();
+			lungimeString = sizeof(this->model);
+			f.write((char*)&lungimeString, sizeof(int));
+			f.write(this->model.c_str(), lungimeString);
+			f.write((char*)&this->nrTurbine, sizeof(int));
+			f.close();
 	}
 
 	void citireFisBin() {
 		fstream g("avi.dat", ios::binary | ios::in);
-		/*g.read((char*)&lungimeString, sizeof(int));
-		g.read((char*)&this->model, lungimeString);
-		cout << this->model << endl;*/
+		int lungimeString = 0;
+		g.read((char*)&lungimeString, sizeof(int));
+
+		// Allocate memory for the model string and read it
+		char* buffer = new char[lungimeString];
+		g.read(buffer, lungimeString);
+		this->model=buffer;
+		delete[] buffer;
+
+		cout <<  this->model << endl;
+
 		g.read((char*)&this->nrTurbine, sizeof(int));
-		cout << this->nrTurbine << endl;
-		
+		cout<< this->nrTurbine << endl;
 		g.close();
+	
 	}
 
 	Avion operator=(const Avion& av) {
@@ -287,15 +295,27 @@ public:
 			}
 		}
 	}
+	int lungimeString1 = 0;
 	void afiFisBin() {
 		fstream f("aeroport.dat", ios::binary | ios::out);
+		lungimeString1 = sizeof(this->numeAeroport);
+		f.write((char*)&lungimeString1, sizeof(int));
+		f.write(this->numeAeroport.c_str(), lungimeString1);
 		f.write((char*)&this->nrProduse, sizeof(int));
 		for (int i = 0; i < this->nrProduse; i++) {
 			f.write((char*)&this->pretProdus[i], sizeof(float));
 		}
 	}
+	
 	void citireFisBin() {
 		fstream g("aeroport.dat", ios::binary | ios::in);
+		int lungimeString1 = 0;
+		g.read((char*)&lungimeString1, sizeof(int));
+		char* buffer = new char[lungimeString1];
+		g.read(buffer, lungimeString1);
+		this->numeAeroport = buffer;
+		delete[]buffer;
+		cout << this->numeAeroport<<endl;
 		g.read((char*)&this->nrProduse, sizeof(int));
 		cout << this->nrProduse<<endl;
 		for (int i = 0; i < this->nrProduse; i++) {
