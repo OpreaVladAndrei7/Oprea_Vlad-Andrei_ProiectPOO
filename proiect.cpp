@@ -16,16 +16,16 @@ public:
 		model = "Boeing 49";
 		nrTurbine = 3;
 		numeTurbine = new string[3];
-		numeTurbine[0] = "General Electric CFM56";
-		numeTurbine[1] = "Rolls-Royce Trent XWB";
-		numeTurbine[2] = "Pratt & Whitney JT8D";
+		numeTurbine[0] = "General_Electric_CFM56";
+		numeTurbine[1] = "Rolls-Royce_Trent_XWB";
+		numeTurbine[2] = "Pratt & Whitney_JT8D";
 	}
 	Avion(string model) : nrAvioane(nrInitialAvioane++) {
 		this->model = model;
 		nrTurbine = 2;
 		numeTurbine = new string[2];
-		numeTurbine[0] = "Gen Electric C12M56";
-		numeTurbine[1] = "Trent AIR XWB";
+		numeTurbine[0] = "Gen_Electric_C12M56";
+		numeTurbine[1] = "Trent_AIR_XWB";
 	}
 	Avion(string model, int nrTurbine, string* numeTurbine) : nrAvioane(nrInitialAvioane++) {
 		this->model = model;
@@ -89,25 +89,27 @@ public:
 			}
 		}
 	}
-	
-	void afisareFisBinNrTurbine() {
+	int lungimeString = 0;
+	void afisareFisBin() {
+		lungimeString = this->model.size();
 		fstream f("avi.dat", ios::binary | ios::out);
+		/*f.write((char*)&lungimeString, sizeof(int));
+		f.write((char*)&this->model, lungimeString);*/
 		f.write((char*)&this->nrTurbine, sizeof(int));
 		f.close();
 	}
 
-	void citireFisBinNrTurbine() {
+	void citireFisBin() {
 		fstream g("avi.dat", ios::binary | ios::in);
+		/*g.read((char*)&lungimeString, sizeof(int));
+		g.read((char*)&this->model, lungimeString);
+		cout << this->model << endl;*/
 		g.read((char*)&this->nrTurbine, sizeof(int));
 		cout << this->nrTurbine << endl;
+		
 		g.close();
 	}
 
-	void afiareFisBinNumeTurbine() {
-		fstream f("avi.dat", ios::binary | ios::in);
-		f.write((char*)this->numeTurbine, sizeof(this->nrTurbine));
-		f.close();
-	}
 	Avion operator=(const Avion& av) {
 		this->model = av.model;
 		this->nrInitialAvioane = av.nrInitialAvioane;
@@ -283,6 +285,24 @@ public:
 			for (int i = 0; i < nrProduse; i++) {
 				this->pretProdus[i] = pretProdus[i];
 			}
+		}
+	}
+	void afiFisBin() {
+		fstream f("aeroport.dat", ios::binary | ios::out);
+		f.write((char*)&this->nrProduse, sizeof(int));
+		for (int i = 0; i < this->nrProduse; i++) {
+			f.write((char*)&this->pretProdus[i], sizeof(float));
+		}
+	}
+	void citireFisBin() {
+		fstream g("aeroport.dat", ios::binary | ios::in);
+		g.read((char*)&this->nrProduse, sizeof(int));
+		cout << this->nrProduse<<endl;
+		for (int i = 0; i < this->nrProduse; i++) {
+			g.read((char*)&this->pretProdus[i], sizeof(float));
+		}
+		for (int i = 0; i < this->nrProduse; i++) {
+			cout << this->pretProdus[i]<<endl;
 		}
 	}
 	Aeroport operator=(const Aeroport& a) {
@@ -862,11 +882,10 @@ ifstream cit("avioane.txt", ios::in);
 cit >> avion18;
 cit.close();
 cout << avion18<<endl;
-avion18.afisareFisBinNrTurbine();
+avion18.afisareFisBin();
 Avion avion19;
 cout<<avion19.getNrTurbine()<<endl;
-avion19.citireFisBinNrTurbine();
-avion18.afiareFisBinNumeTurbine();
+avion19.citireFisBin();
 //Avion avion19("Aircraft_777");
 //Avion avion20("AIRTIME");
 ////fstream f("avi.dat", ios::binary | ios::out);
@@ -885,6 +904,10 @@ af.close();
 ifstream ci("aeroport.txt", ios::in);
 ci >> aeroport8;
 ci.close();
-cout << aeroport8;
+cout << aeroport8<<endl;
+aeroport8.afiFisBin();
+Aeroport aeroport9;
+cout << aeroport9.getNrProduse() << endl;
+aeroport9.citireFisBin();
 
 }
