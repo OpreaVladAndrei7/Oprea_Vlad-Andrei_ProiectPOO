@@ -682,7 +682,7 @@ string sirModele(const CompanieAeriana& com) {
 float CompanieAeriana::TVA = 9;
 
 void main() {
-	/*int numarAvioane = 0;
+	int numarAvioane = 0;
 	cout << "Numarul de avioane inregistrate in vector " << endl;
 	cin >> numarAvioane;
 	Avion* vector = new Avion[numarAvioane];
@@ -866,7 +866,7 @@ aerodrom1.setSuprafata(1250);
 cout << aerodrom1.getSuprafata()<<endl;
 aerodrom1.setAvion(avion10);
 cout << aerodrom1.getAvion()<<endl;
-cout << (aerodrom1 + aerodrom2);*/
+cout << (aerodrom1 + aerodrom2);
 //aerodrom1.setNrAvioane(4);
 //cout << aerodrom1;
 
@@ -896,10 +896,10 @@ avion19.citireFisBin();
 //g.close();
 //cout << avion20;
 
-Aeroport aeroport7("Bergamo");
+Aeroport aeroport10("Bergamo");
 Aeroport aeroport8("Feyenord");
 ofstream af("aeroport.txt", ios::out);
-af << aeroport7;
+af << aeroport10;
 af.close();
 ifstream ci("aeroport.txt", ios::in);
 ci >> aeroport8;
