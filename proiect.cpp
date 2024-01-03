@@ -812,248 +812,248 @@ string sirModele(const CompanieAeriana& com) {
 float CompanieAeriana::TVA = 9;
 
 void main() {
-	//	int numarAvioane = 0;
-	//	cout << "Numarul de avioane inregistrate in vector " << endl;
-	//	cin >> numarAvioane;
-	//	Avion* vector = new Avion[numarAvioane];
-	//	for (int i = 0; i < numarAvioane; i++) {
-	//		cin >> vector[i];
-	//	}
-	//	for (int i = 0; i < numarAvioane; i++) {
-	//		cout << vector[i] << endl;
-	//	}
-	//	const int nrLinii = 2;
-	//	const int nrColoane = 2;
-	//	Avion avioane[nrLinii][nrColoane];
-	//	for (int i = 0; i < nrLinii; i++) {
-	//		for (int j = 0; j < nrColoane; j++) {
-	//			cout << "Avionul de pe pozitia " << i + 1 << " " << j + 1 << endl;
-	//			cin >> avioane[i][j];
-	//		}
-	//	}
-	//	for (int i = 0; i < nrLinii; i++) {
-	//		for (int j = 0; j < nrColoane; j++) {
-	//			cout << avioane[i][j] << " ";
-	//		}
-	//		cout << endl;
-	//	}
-	//
-	//	Avion avion1;
-	//	avion1.afisareAvion();
-	//
-	//	Avion avion2("Boeing23");
-	//	avion2.afisareAvion();
-	//
+		int numarAvioane = 0;
+		cout << "Numarul de avioane inregistrate in vector " << endl;
+		cin >> numarAvioane;
+		Avion* vector = new Avion[numarAvioane];
+		for (int i = 0; i < numarAvioane; i++) {
+			cin >> vector[i];
+		}
+		for (int i = 0; i < numarAvioane; i++) {
+			cout << vector[i] << endl;
+		}
+		const int nrLinii = 2;
+		const int nrColoane = 2;
+		Avion avioane[nrLinii][nrColoane];
+		for (int i = 0; i < nrLinii; i++) {
+			for (int j = 0; j < nrColoane; j++) {
+				cout << "Avionul de pe pozitia " << i + 1 << " " << j + 1 << endl;
+				cin >> avioane[i][j];
+			}
+		}
+		for (int i = 0; i < nrLinii; i++) {
+			for (int j = 0; j < nrColoane; j++) {
+				cout << avioane[i][j] << " ";
+			}
+			cout << endl;
+		}
+	
+		Avion avion1;
+		avion1.afisareAvion();
+	
+		Avion avion2("Boeing23");
+		avion2.afisareAvion();
+	
 		string* numeTurbine = new string[3];
 		numeTurbine[0] = "General Electric CFM56";
 		numeTurbine[1] = "Rolls-Royce Trent XWB";
 		numeTurbine[2] = "Pratt & Whitney JT8D";
-	//
-	//	Avion avion3("Electro 23 air", 3, numeTurbine);
-	//	avion3.afisareAvion();
-	//
-	//	cout << endl;
-	//
-	//	cout << avion1.getInitializareNrAvioane() << endl;
-	//	avion1.setModel("Mecredes Air");
-	//	cout << avion1.getModel() << endl;
-	//	avion1.setNrTurbine(2);
-	//	cout << avion1.getNrTurbine() << endl;
-	//	avion1.setNumeTurbine(numeTurbine, 3);
-	//	for (int i = 0; i < 3; i++) {
-	//		cout << avion1.getNumeTurbine()[i] << endl;
-	//	}
-	//	cout << medieTurbinePeAvion(avion3) << endl;
-	//	cout << getSirNumeTurbine(avion1) << endl;
-	//
-	//	cout << endl;
-	//	avion1 = avion2;
-	//	avion1.afisareAvion();
-	//	Avion avion5 = avion1 + avion2;
-	//	avion5.afisareAvion();
-	//	cout << (avion5 > avion1) << endl;
-	//	cout << avion1 << endl;
-	//
-	//	cout << endl;
-	//	cout << endl;
-	//
-	//	int numarAeroporturi = 0;
-	//	cout << "Numarul de aeroporturi in vector:" << endl;
-	//	cin >> numarAeroporturi;
-	//	Aeroport* vectorAer = new Aeroport[numarAeroporturi];
-	//	for (int i = 0; i < numarAeroporturi; i++) {
-	//		cin >> vectorAer[i];
-	//	}
-	//	for (int i = 0; i < numarAeroporturi; i++) {
-	//		cout << vectorAer[i] << endl;
-	//	}
-	//
-	//	Aeroport aeroport1;
-	//	aeroport1.afisareAeroport();
-	//
-	//	Aeroport aeroport2("Henri Coanda");
-	//	aeroport2.afisareAeroport();
-	//
-	//	float* pretProdus = new float[3];
-	//	pretProdus[0] = 5.3;
-	//	pretProdus[1] = 2.23;
-	//	pretProdus[2] = 5.99;
-	//
-	//	Aeroport aeroport3("King Fahd", 3, pretProdus);
-	//	aeroport3.afisareAeroport();
-	//
-	//	cout << endl;
-	//
-	//	cout << aeroport1.getInitializareNumarInitial() << endl;
-	//	aeroport1.setNumeAeroport("Cluj Airport");
-	//	cout << aeroport1.getNumeAeroport() << endl;
-	//	aeroport1.setNrProduse(3);
-	//	cout << aeroport1.getNrProduse() << endl;
-	//	aeroport1.setPretProduse(pretProdus, 3);
-	//	for (int i = 0; i < 3; i++) {
-	//		cout << aeroport1.getPretProduse()[i] << endl;
-	//	}
-	//	cout << pretMediu(aeroport1) << endl;
-	//	afisarePreturi(aeroport1);
-	//
-	//	cout << endl;
-	//	aeroport3 = aeroport1;
-	//	aeroport3.afisareAeroport();
-	//	Aeroport aeroport4;
-	//	aeroport4++;
-	//	aeroport4.afisareAeroport();
-	//	Aeroport aeroport5;
-	//	cin >> aeroport5;
-	//	aeroport5.afisareAeroport();
-	//	Aeroport aeroport6("Andalusia", 3, pretProdus);
-	//	Aeroport aeroport7("Wiz Airport", 3, pretProdus);
-	//	aeroport6 += aeroport7;
-	//	aeroport6.afisareAeroport();
-	//
-	//	cout << endl;
-	//	cout << endl;
-	//
-	//	int numarCompanii = 0;
-	//	cout << "Numarul de companii din vector este:" << endl;
-	//	cin >> numarCompanii;
-	//	CompanieAeriana* vectorCom = new CompanieAeriana[numarCompanii];
-	//	for (int i = 0; i < numarCompanii; i++) {
-	//		cin >> vectorCom[i];
-	//	}
-	//	for (int i = 0; i < numarCompanii; i++) {
-	//		cout << vectorCom[i];
-	//	}
-	//
-	//	CompanieAeriana companie1;
-	//	companie1.afisareCompanie();
-	//
-	//	CompanieAeriana companie2(130);
-	//	companie2.afisareCompanie();
-	//
-	//	string* modelAeronava = new string[2];
-	//	modelAeronava[0] = "Traveler Air 23";
-	//	modelAeronava[1] = "Boeing 45";
-	//
-	//	CompanieAeriana companie3("Turkish Airlines", 2, 980, true, modelAeronava);
-	//	companie3.afisareCompanie();
-	//
-	//	cout << endl;
-	//
-	//	cout << companie1.getInitializareTVA() << endl;
-	//	companie1.setNume("Qatar AIRWAYS");
-	//	cout << companie1.getNume() << endl;
-	//	companie1.setNumarAeronave(6);
-	//	cout << companie1.getNumarAeronave() << endl;
-	//	companie1.setValoareNetaM(100.5);
-	//	cout << companie1.getValoareNetaM() << endl;
-	//	companie1.setModelAeronava(modelAeronava, 2);
-	//	for (int i = 0; i < 2; i++) {
-	//		cout << companie1.getModelAeronava()[i] << endl;
-	//	}
-	//	cout << valoareAbsolutaM(companie1) << endl;
-	//	cout << sirModele(companie2) << endl;
-	//
-	//	cout << endl;
-	//	cout << companie3[1] << endl;
-	//	CompanieAeriana companie4;
-	//	companie4 = companie3;
-	//	companie4.afisareCompanie();
-	//	companie4 = companie2 - companie3;
-	//	companie4.afisareCompanie();
-	//	cout << companie3;
-	//
-	//cout << endl;
-	//cout << endl;
-	//
-	//Aerodrom aerodrom1;
-	//Aerodrom aerodrom2;
-	//Avion avion10;
-	//cin >> aerodrom1;
-	//cout << aerodrom1<<endl;
-	//aerodrom1.setDenumire("Buckingham");
-	//cout << aerodrom1.getDenumire() << endl;
-	//aerodrom1.setSuprafata(1250);
-	//cout << aerodrom1.getSuprafata()<<endl;
-	//aerodrom1.setAvion(avion10);
-	//cout << aerodrom1.getAvion()<<endl;
-	//cout << (aerodrom1 + aerodrom2);
-	////aerodrom1.setNrAvioane(4);
-	////cout << aerodrom1;
-	//
-	//cout << endl;
-	//cout << endl;
-	//
-	//Avion avion17("Boeing_727");
-	//Avion avion18;
-	//ofstream afi("avioane.txt", ios::out);
-	//afi << avion17;
-	//afi.close();
-	//ifstream cit("avioane.txt", ios::in);
-	//cit >> avion18;
-	//cit.close();
-	//cout << avion18<<endl;
-	//avion18.afisareFisBin();
-	//Avion avion19;
-	//cout<<avion19.getNrTurbine()<<endl;
-	//avion19.citireFisBin();
-	//
-	//cout << endl;
-	//cout << endl;
-	//
-	//Aeroport aeroport10("Bergamo");
-	//Aeroport aeroport8("Feyenord");
-	//ofstream af("aeroport.txt", ios::out);
-	//af << aeroport10;
-	//af.close();
-	//ifstream ci("aeroport.txt", ios::in);
-	//ci >> aeroport8;
-	//ci.close();
-	//cout << aeroport8<<endl;
-	//aeroport8.afiFisBin();
-	//Aeroport aeroport9;
-	//cout << aeroport9.getNrProduse() << endl;
-	//aeroport9.citireFisBin();
-	//AvionVanatoare av1;
-	//av1.afisareAvionVanatoare();
-	//string* numeTurbine1 = new string[3]{ "ALKA", "KIPLING", "GOFREY" };
-	//float* turatieTurbine = new float[3] {1567.4, 3233.4, 2334.3};
-	//AvionVanatoare av2(25, turatieTurbine, "Bauhaus", 3, numeTurbine1);
-	//cout << av2;
-	//av2.afisareAvionVanatoare();
-	//AvionVanatoare av3 = av2;
-	//cout << av3;
-	//av3.afisareAvionVanatoare();
-	//AeroportPrivat ap1;
-	//cout << ap1<<endl;
-	//ap1.afisareAeroportPrivat();
-	//float* pretProdus1 = new float[4] {3.45, 9.99, 30, 23.2};
-	//char* numeDirector = new char[15] {"Christoph Daum"};
-	//AeroportPrivat ap2( 450 , numeDirector, "Secret_National", 4, pretProdus1);
-	//cout << ap2 << endl;
-	//ap2.afisareAeroportPrivat();
-	//AeroportPrivat ap3 = ap2;
-	//cout << ap3<<endl;
-	//ap3.afisareAeroportPrivat();
+	
+		Avion avion3("Electro 23 air", 3, numeTurbine);
+		avion3.afisareAvion();
+	
+		cout << endl;
+	
+		cout << avion1.getInitializareNrAvioane() << endl;
+		avion1.setModel("Mecredes Air");
+		cout << avion1.getModel() << endl;
+		avion1.setNrTurbine(2);
+		cout << avion1.getNrTurbine() << endl;
+		avion1.setNumeTurbine(numeTurbine, 3);
+		for (int i = 0; i < 3; i++) {
+			cout << avion1.getNumeTurbine()[i] << endl;
+		}
+		cout << medieTurbinePeAvion(avion3) << endl;
+		cout << getSirNumeTurbine(avion1) << endl;
+	
+		cout << endl;
+		avion1 = avion2;
+		avion1.afisareAvion();
+		Avion avion5 = avion1 + avion2;
+		avion5.afisareAvion();
+		cout << (avion5 > avion1) << endl;
+		cout << avion1 << endl;
+	
+		cout << endl;
+		cout << endl;
+	
+		int numarAeroporturi = 0;
+		cout << "Numarul de aeroporturi in vector:" << endl;
+		cin >> numarAeroporturi;
+		Aeroport* vectorAer = new Aeroport[numarAeroporturi];
+		for (int i = 0; i < numarAeroporturi; i++) {
+			cin >> vectorAer[i];
+		}
+		for (int i = 0; i < numarAeroporturi; i++) {
+			cout << vectorAer[i] << endl;
+		}
+	
+		Aeroport aeroport1;
+		aeroport1.afisareAeroport();
+	
+		Aeroport aeroport2("Henri Coanda");
+		aeroport2.afisareAeroport();
+	
+		float* pretProdus = new float[3];
+		pretProdus[0] = 5.3;
+		pretProdus[1] = 2.23;
+		pretProdus[2] = 5.99;
+	
+		Aeroport aeroport3("King Fahd", 3, pretProdus);
+		aeroport3.afisareAeroport();
+	
+		cout << endl;
+	
+		cout << aeroport1.getInitializareNumarInitial() << endl;
+		aeroport1.setNumeAeroport("Cluj Airport");
+		cout << aeroport1.getNumeAeroport() << endl;
+		aeroport1.setNrProduse(3);
+		cout << aeroport1.getNrProduse() << endl;
+		aeroport1.setPretProduse(pretProdus, 3);
+		for (int i = 0; i < 3; i++) {
+			cout << aeroport1.getPretProduse()[i] << endl;
+		}
+		cout << pretMediu(aeroport1) << endl;
+		afisarePreturi(aeroport1);
+	
+		cout << endl;
+		aeroport3 = aeroport1;
+		aeroport3.afisareAeroport();
+		Aeroport aeroport4;
+		aeroport4++;
+		aeroport4.afisareAeroport();
+		Aeroport aeroport5;
+		cin >> aeroport5;
+		aeroport5.afisareAeroport();
+		Aeroport aeroport6("Andalusia", 3, pretProdus);
+		Aeroport aeroport7("Wiz Airport", 3, pretProdus);
+		aeroport6 += aeroport7;
+		aeroport6.afisareAeroport();
+	
+		cout << endl;
+		cout << endl;
+	
+		int numarCompanii = 0;
+		cout << "Numarul de companii din vector este:" << endl;
+		cin >> numarCompanii;
+		CompanieAeriana* vectorCom = new CompanieAeriana[numarCompanii];
+		for (int i = 0; i < numarCompanii; i++) {
+			cin >> vectorCom[i];
+		}
+		for (int i = 0; i < numarCompanii; i++) {
+			cout << vectorCom[i];
+		}
+	
+		CompanieAeriana companie1;
+		companie1.afisareCompanie();
+	
+		CompanieAeriana companie2(130);
+		companie2.afisareCompanie();
+	
+		string* modelAeronava = new string[2];
+		modelAeronava[0] = "Traveler Air 23";
+		modelAeronava[1] = "Boeing 45";
+	
+		CompanieAeriana companie3("Turkish Airlines", 2, 980, true, modelAeronava);
+		companie3.afisareCompanie();
+	
+		cout << endl;
+	
+		cout << companie1.getInitializareTVA() << endl;
+		companie1.setNume("Qatar AIRWAYS");
+		cout << companie1.getNume() << endl;
+		companie1.setNumarAeronave(6);
+		cout << companie1.getNumarAeronave() << endl;
+		companie1.setValoareNetaM(100.5);
+		cout << companie1.getValoareNetaM() << endl;
+		companie1.setModelAeronava(modelAeronava, 2);
+		for (int i = 0; i < 2; i++) {
+			cout << companie1.getModelAeronava()[i] << endl;
+		}
+		cout << valoareAbsolutaM(companie1) << endl;
+		cout << sirModele(companie2) << endl;
+	
+		cout << endl;
+		cout << companie3[1] << endl;
+		CompanieAeriana companie4;
+		companie4 = companie3;
+		companie4.afisareCompanie();
+		companie4 = companie2 - companie3;
+		companie4.afisareCompanie();
+		cout << companie3;
+	
+	cout << endl;
+	cout << endl;
+	
+	Aerodrom aerodrom1;
+	Aerodrom aerodrom2;
+	Avion avion10;
+	cin >> aerodrom1;
+	cout << aerodrom1<<endl;
+	aerodrom1.setDenumire("Buckingham");
+	cout << aerodrom1.getDenumire() << endl;
+	aerodrom1.setSuprafata(1250);
+	cout << aerodrom1.getSuprafata()<<endl;
+	aerodrom1.setAvion(avion10);
+	cout << aerodrom1.getAvion()<<endl;
+	cout << (aerodrom1 + aerodrom2);
+	//aerodrom1.setNrAvioane(4);
+	//cout << aerodrom1;
+	
+	cout << endl;
+	cout << endl;
+	
+	Avion avion17("Boeing_727");
+	Avion avion18;
+	ofstream afi("avioane.txt", ios::out);
+	afi << avion17;
+	afi.close();
+	ifstream cit("avioane.txt", ios::in);
+	cit >> avion18;
+	cit.close();
+	cout << avion18<<endl;
+	avion18.afisareFisBin();
+	Avion avion19;
+	cout<<avion19.getNrTurbine()<<endl;
+	avion19.citireFisBin();
+	
+	cout << endl;
+	cout << endl;
+	
+	Aeroport aeroport10("Bergamo");
+	Aeroport aeroport8("Feyenord");
+	ofstream af("aeroport.txt", ios::out);
+	af << aeroport10;
+	af.close();
+	ifstream ci("aeroport.txt", ios::in);
+	ci >> aeroport8;
+	ci.close();
+	cout << aeroport8<<endl;
+	aeroport8.afiFisBin();
+	Aeroport aeroport9;
+	cout << aeroport9.getNrProduse() << endl;
+	aeroport9.citireFisBin();
+	AvionVanatoare av1;
+	av1.afisareAvionVanatoare();
+	string* numeTurbine1 = new string[3]{ "ALKA", "KIPLING", "GOFREY" };
+	float* turatieTurbine = new float[3] {1567.4, 3233.4, 2334.3};
+	AvionVanatoare av2(25, turatieTurbine, "Bauhaus", 3, numeTurbine1);
+	cout << av2;
+	av2.afisareAvionVanatoare();
+	AvionVanatoare av3 = av2;
+	cout << av3;
+	av3.afisareAvionVanatoare();
+	AeroportPrivat ap1;
+	cout << ap1<<endl;
+	ap1.afisareAeroportPrivat();
+	float* pretProdus1 = new float[4] {3.45, 9.99, 30, 23.2};
+	char* numeDirector = new char[15] {"Christoph Daum"};
+	AeroportPrivat ap2( 450 , numeDirector, "Secret_National", 4, pretProdus1);
+	cout << ap2 << endl;
+	ap2.afisareAeroportPrivat();
+	AeroportPrivat ap3 = ap2;
+	cout << ap3<<endl;
+	ap3.afisareAeroportPrivat();
 
 	SpatiuAerian** sa;
 	sa = new SpatiuAerian * [10];
